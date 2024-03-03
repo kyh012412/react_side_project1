@@ -1,0 +1,22 @@
+{
+  "homedatas": [
+    {
+      "id": 1,
+      "title": "collapse",
+      "key": "key1",
+      "site": "site1"
+    },
+    {
+      "id": 2,
+      "title": "collapse2",
+      "key": "key2",
+      "site": "site2"
+    },
+    {
+      "id": 3,
+      "title": "collapse3",
+      "key": "key3",
+      "site": "site3"
+    }
+  ]
+}
