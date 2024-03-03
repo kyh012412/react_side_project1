@@ -1,5 +1,12 @@
+import Home from './Home';
+
 const NavOpenedContent = () => {
-  return <h1>방벽 전개</h1>;
+  return (
+    <>
+      <h1>영역 전개</h1>
+      <Home />
+    </>
+  );
 };
 
 export default NavOpenedContent;

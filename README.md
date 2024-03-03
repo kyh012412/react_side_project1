@@ -24,6 +24,7 @@ npm start
 - db에 들어가는 정보나 api키 따로 빼서 연결하는 법 알아보기
 - css bootstrap의 기본 components
 - 하나의 row안에서 parent div는 고정이고 그 내부의 자식들만 횡스크롤로 리스트를 볼 수 있게 하는 bootstrap
+- 콜랩스, 캐러셀?
 
 #### 적용할 계획
 
@@ -48,3 +49,9 @@ npm start
 
 - [변수명 짓는 사이트](https://www.curioustore.com/)
 - [AI - Gemini](https://gemini.google.com/app)
+- [이미지 - 픽사베이](https://pixabay.com/ko/)
+
+###### 후순위
+
+- 알파벳 정리하기
+- 복호화 가능한 js에서 사용하는 암호화 방식

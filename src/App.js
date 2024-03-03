@@ -1,19 +1,22 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './component/Home';
-import Collapse from './component/Collapse';
 import Nav from './component/Nav';
+import Collapse from './component/Collapse';
+import Carousel from './component/Carousel';
 
 function App() {
   return (
     <>
       <Nav />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/collapse" element={<Collapse />} />
-        </Routes>
-      </BrowserRouter>
+      <div id="Content">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" />
+            <Route path="/collapse" element={<Collapse />} />
+            <Route path="/carousel" element={<Carousel />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </>
   );
 }

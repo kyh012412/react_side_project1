@@ -10,13 +10,15 @@
     },
     {
       "id": 2,
-      "title": "collapse2",
-      "site": "site2"
+      "title": "carousel",
+      "link": ["https://getbootstrap.kr/docs/5.3/components/carousel/"],
+      "mypage": ""
     },
     {
       "id": 3,
       "title": "collapse3",
-      "site": "site3"
+      "link": ["https://getbootstrap.kr/docs/5.3/components/carousel/"],
+      "mypage": ""
     }
   ]
 }

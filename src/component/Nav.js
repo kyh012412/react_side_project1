@@ -10,7 +10,7 @@ const Nav = () => {
   };
 
   return (
-    <div onClick={changedNavStatus}>
+    <div id="Nav" onClick={changedNavStatus}>
       {nav_expanded ? <NavOpenedContent /> : <NavClosedContent />}
     </div>
   );
