@@ -25,9 +25,15 @@ npm start
 - css bootstrap의 기본 components
 - 하나의 row안에서 parent div는 고정이고 그 내부의 자식들만 횡스크롤로 리스트를 볼 수 있게 하는 bootstrap
 
+#### 적용할 계획
+
+- 헤더 + 네비게이션 + 푸터
+- json화해서 CLOB로 변경하기
+
 ### 배워야 할 기술들 (프로젝트 외부)
 
 - springboot에서 구축한 api에 접근하기 (CORS문제 해결)
+- 노션 사용법
 
 #### 만들어야할 대상 메모
 
@@ -37,3 +43,8 @@ npm start
 
 - 카테고리에 준하는 어느정도 구분이 있는 메모장
 - javascript 게임
+
+##### 참고 사이트
+
+- [변수명 짓는 사이트](https://www.curioustore.com/)
+- [AI - Gemini](https://gemini.google.com/app)

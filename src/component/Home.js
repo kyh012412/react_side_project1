@@ -19,18 +19,20 @@ const Home = () => {
 
   return (
     <>
-      <ul id="dataUl">
-        {datas.map((data, idx) => (
-          <li key={data.id}>
-            <a href={data.link} target="_blank">
-              <div>외부링크 : {data.title}</div>
-            </a>
-            <a href={data.mypage} target="_blank">
-              <div>내부링크 : {data.title}</div>
-            </a>
-          </li>
-        ))}
-      </ul>
+      {datas.length > 0 && ( // Check if datas has items before rendering
+        <ul id="dataUl">
+          {datas[0].studyList.map((data, idx) => (
+            <li key={data.id}>
+              <a href={data.link} target="_blank">
+                <div>외부링크 : {data.title}</div>
+              </a>
+              <a href={data.mypage} target="_blank">
+                <div>내부링크 : {data.title}</div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };

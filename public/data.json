@@ -1,20 +1,22 @@
-[
-  {
-    "id": 1,
-    "title": "collapse",
-    "link": [
-      "https://getbootstrap.kr/docs/5.3/components/collapse/#%ec%bd%9c%eb%9e%a9%ec%8a%a4"
-    ],
-    "mypage": "/collapse"
-  },
-  {
-    "id": 2,
-    "title": "collapse2",
-    "site": "site2"
-  },
-  {
-    "id": 3,
-    "title": "collapse3",
-    "site": "site3"
-  }
-]
+{
+  "studyList": [
+    {
+      "id": 1,
+      "title": "collapse",
+      "link": [
+        "https://getbootstrap.kr/docs/5.3/components/collapse/#%ec%bd%9c%eb%9e%a9%ec%8a%a4"
+      ],
+      "mypage": "/collapse"
+    },
+    {
+      "id": 2,
+      "title": "collapse2",
+      "site": "site2"
+    },
+    {
+      "id": 3,
+      "title": "collapse3",
+      "site": "site3"
+    }
+  ]
+}
