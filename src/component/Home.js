@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <>
-      {datas.length > 0 && ( // Check if datas has items before rendering
+      {datas.length > 0 ? ( // Check if datas has items before rendering
         <ul id="dataUl">
           {datas[0].studyList.map((data, idx) => (
             <li key={data.id}>
@@ -32,6 +32,8 @@ const Home = () => {
             </li>
           ))}
         </ul>
+      ) : (
+        'data loading or unreachable status'
       )}
     </>
   );
