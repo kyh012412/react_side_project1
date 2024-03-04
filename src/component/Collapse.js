@@ -13,9 +13,9 @@ const Collapse = ({id="collapseWidthExample"}) => {
           Toggle width collapse
         </button>
       </p>
-      <div style={{ minHeight:"120px"}}>
+      <div style={{ Height:"120px"}}>
         <div className="collapse collapse-horizontal" id={id}>
-          <div className="card card-body" style="width: 300px;">
+          <div className="card card-body" style={{width: "300px"}}>
             This is some placeholder content for a horizontal collapse. It's
             hidden by default and shown when triggered.
           </div>
