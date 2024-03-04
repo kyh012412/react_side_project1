@@ -1,0 +1,44 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  perspective: 1000px;
+}
+
+.card {
+  width: 150px;
+  height: 200px;
+  position: relative;
+  margin: 5px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+.card.flip {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 5px;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.1);
+  backface-visibility: hidden;
+}
+
+.front {
+  transform: rotateY(180deg);
+}

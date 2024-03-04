@@ -6,6 +6,7 @@ import Carousel from './component/Carousel';
 import Dropdown from './component/Dropdown';
 import Navbar from './component/Navbar';
 import './css/mytemplate.css'
+import CardInGame from './component/CardInGame';
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
               <Route path="/collapse" element={<Collapse />} />
               <Route path="/carousel" element={<Carousel />} />
               <Route path="/dropdowns" element={<Dropdown />} />
-              <Route path="/card" />
+              <Route path="/card" element={<CardInGame 
+              name="asset0" imagePath="/img/card/asset0.svg"/>} />
             </Routes>
           </BrowserRouter>
         </div>
