@@ -8,6 +8,7 @@ import Navbar from './component/Navbar';
 import './css/mytemplate.css'
 import CardInGame from './component/CardInGame';
 import BoardInGame from './component/BoardInGame';
+import IsOutsideInfoComeLater from './component/IsOutsideInfoComeLater';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               <Route path="/card" element={<CardInGame 
               name="asset0" imagePath="/img/card/asset0.svg"/>} />              
               <Route path="/board" element={<BoardInGame num="2" jsonPath="/cardData.json" />} />
+              <Route path="/isout" element={<IsOutsideInfoComeLater/>}/>
             </Routes>
           </BrowserRouter>
         </div>

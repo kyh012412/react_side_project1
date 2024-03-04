@@ -21,7 +21,7 @@ const BoardInGame = ({num=2,jsonPath="/cardData.json"}) =>{
   return (
     <div className='Board'>
       {datas.map((data,idx)=>(
-        <CardInGame name={data.name} imagePath={data.imagePath} firstCard={firstCard}/>
+        <CardInGame name={data.name} imagePath={data.imagePath} firstCard={firstCard} setFirstCard={setFirstCard}/>
       ))}
     </div>
   );

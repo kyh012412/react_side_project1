@@ -6,7 +6,7 @@ import '../css/farm.css';
  * @param {String} imagePath 이미지 경로
  * @returns 
  */
-const CardInGame = ({name, imagePath,firstCard}) => {
+const CardInGame = ({name, imagePath,firstCard,setFirstCard}) => {
   const [isDisabled,setDisable] = new useState(false);
   const [isFlipped, setIsFlipped] = new useState(false); 
 
@@ -14,9 +14,18 @@ const CardInGame = ({name, imagePath,firstCard}) => {
     if(isDisabled){
       return;
     }
+
+    if(firstCard == null){
+      setFirstCard(thisCard);
+      setIsFlipped(!isFlipped);
+      return;
+    }
+
     if(firstCard == thisCard){
       return;
     }
+
+    //다른카드를 disable하는게 문제임 
     if(firstCard.dataset.name == thisCard.dataset.name){
       setIsFlipped(!isFlipped);
       setDisable(true);
