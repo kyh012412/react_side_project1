@@ -1,0 +1,17 @@
+[
+  {
+    "buttonText": "리셋",
+    "value": "reset",
+    "function": "reset()"
+  },
+  {
+    "buttonText": "카드 추가",
+    "value": "addCard",
+    "function": "addCard()"
+  },
+  {
+    "buttonText": "힌트",
+    "value": "hint",
+    "function": "hint()"
+  }
+]

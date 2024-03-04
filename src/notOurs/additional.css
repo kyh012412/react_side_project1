@@ -1,0 +1,33 @@
+Options {
+  border: none;
+  display: block;
+}
+
+.default_test {
+  /* display: block; */
+  background-color: gray;
+  width: 100vw;
+  height: 10vh;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+custom-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header > button {
+  margin: 5px;
+}
+
+/* 
+footer{
+
+}
+*/
