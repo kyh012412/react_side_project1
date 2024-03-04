@@ -22,6 +22,7 @@ function App() {
       <div className='middle'>
         <div className='middle-left'>
           <Collapse id="leftNav" text="네이게이션" Content={<Nav id={"leftNav"}/>}/>
+          <Collapse id="itemsNav" text="아이템" Content={<Nav id="itemsNav"/>}/>
         </div>
         <div className='middle-center' id="Content">
           <BrowserRouter>

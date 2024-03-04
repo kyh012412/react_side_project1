@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 // import datas from '../data.json';
 import mycss from '../css/my.css';
 
-const Home = () => {
+const Home = ({fetch_url='/data.json'}) => {
   const [datas, setDatas] = useState([]);
 
   const fetchData = async () => {
-    const response = await fetch('/data.json');
+    const response = await fetch(fetch_url);
     // console.log(response);
     const jsonData = await response.json();
     // console.log(jsonData);
