@@ -4,10 +4,14 @@ ul#dataUl > li {
 
 #Nav {
   position: relative;
-  left: 100px;
-  top: 100px;
 }
 
 #Content {
   position: relative;
+}
+
+.urgentImg{
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
 }

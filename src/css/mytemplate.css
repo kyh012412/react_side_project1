@@ -1,0 +1,41 @@
+.test,* {
+  border: 0.5px solid #000;
+}
+
+.test,* {
+  box-sizing: border-box;
+}
+
+.header{
+  margin: 0 auto;
+}
+
+.middle{
+  display:flex ;
+}
+
+.middle-left{
+  width: 20%;
+}
+
+.middle-center{
+  width: 60%;
+}
+
+.middle-right{
+  width: 20%;
+}
+
+ul#dataUl>li {
+  margin:0 5px 0 0;
+  padding: 0 0 0 0;
+  height:auto;
+}
+
+ul#dataUl>li>a{
+  display: inline-block;
+}
+
+a{
+  text-decoration: none;
+}

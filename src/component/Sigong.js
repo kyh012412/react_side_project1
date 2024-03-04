@@ -1,3 +1,4 @@
+/** 돌아가는 시공이미지 css파밍연습 */
 const Sigong = () => {
   return (
     <>
