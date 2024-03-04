@@ -7,9 +7,9 @@ const Home = () => {
 
   const fetchData = async () => {
     const response = await fetch('/data.json');
-    console.log(response);
+    // console.log(response);
     const jsonData = await response.json();
-    console.log(jsonData);
+    // console.log(jsonData);
     setDatas(jsonData.studyList);
   };
 

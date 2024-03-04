@@ -6,19 +6,25 @@ import '../css/farm.css';
  * @param {String} imagePath 이미지 경로
  * @returns 
  */
-const CardInGame = ({name, imagePath}) => {
+const CardInGame = ({name, imagePath,firstCard}) => {
   const [isDisabled,setDisable] = new useState(false);
-  const [isFlipped, setIsFlipped] = new useState(false); // 추가된 상태 변수
+  const [isFlipped, setIsFlipped] = new useState(false); 
 
-  const clickCard = (e)=>{
+  const clickCard = (firstCard,thisCard)=>{
     if(isDisabled){
       return;
     }
-    setIsFlipped(!isFlipped);
+    if(firstCard == thisCard){
+      return;
+    }
+    if(firstCard.dataset.name == thisCard.dataset.name){
+      setIsFlipped(!isFlipped);
+      setDisable(true);
+    }
   }
 
   return (
-    <div className={`card ${isFlipped ? 'flip' : ''}`} data-name={name} onClick={clickCard} {`${isDisabled?'disable':''}`}>
+    <div className={`card ${isFlipped ? 'flip' : ''}`} data-name={name} onClick={(e)=>clickCard(firstCard,e.currentTarget)} >
       <img className="front" src={imagePath} alt="Card front" />
       <img className="back" src="/img/card/question.svg" alt="Card back" />
     </div>

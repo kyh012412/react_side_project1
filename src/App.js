@@ -7,6 +7,7 @@ import Dropdown from './component/Dropdown';
 import Navbar from './component/Navbar';
 import './css/mytemplate.css'
 import CardInGame from './component/CardInGame';
+import BoardInGame from './component/BoardInGame';
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
               <Route path="/carousel" element={<Carousel />} />
               <Route path="/dropdowns" element={<Dropdown />} />
               <Route path="/card" element={<CardInGame 
-              name="asset0" imagePath="/img/card/asset0.svg"/>} />
+              name="asset0" imagePath="/img/card/asset0.svg"/>} />              
+              <Route path="/board" element={<BoardInGame num="2" jsonPath="/cardData.json" />} />
             </Routes>
           </BrowserRouter>
         </div>
