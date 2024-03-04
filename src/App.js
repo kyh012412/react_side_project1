@@ -18,7 +18,7 @@ function App() {
       {/* 상중하중에 중간에 뚱뚱한 가로로 긴 직사각형 */}
       <div className='middle'>
         <div className='middle-left'>
-          <Nav id={"leftNav"}/>
+          <Collapse id="leftNav" text="네이게이션" Content={<Nav id={"leftNav"}/>}/>
         </div>
         <div className='middle-center' id="Content">
           <BrowserRouter>
@@ -27,6 +27,7 @@ function App() {
               <Route path="/collapse" element={<Collapse />} />
               <Route path="/carousel" element={<Carousel />} />
               <Route path="/dropdowns" element={<Dropdown />} />
+              <Route path="/card" />
             </Routes>
           </BrowserRouter>
         </div>
