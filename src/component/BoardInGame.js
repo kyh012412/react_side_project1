@@ -33,7 +33,7 @@ const isEmpty = (somethingObject) => {
 const turnFlipNthIdxCard = (state, idx) => {
   const thisCardInfo = {
     ...state[idx],
-    isFlipped: true,
+    isFlipped: !state[idx].isFlipped,
   };
   state[idx] = thisCardInfo;
   return [...state];
@@ -62,6 +62,10 @@ const reducer = (state, action) => {
         setFirstCard(thisCard);
         return turnFlipNthIdxCard(state, thisCardIdx);
 
+        // 잠겨있는 경우
+      } else if (action.payload.boardOption.isLocked) {
+        return state;
+
         //첫번째 카드를 또 고른 경우
       } else if (thisCardIdx === firstCardIdx) {
         alert('이미 고른카드!');
@@ -73,10 +77,34 @@ const reducer = (state, action) => {
         //1~2초 뒤에 다시 자동으로 뒤집을수있게 변수하나를 바꿔줘야하며
         //변수에 따라서 useEffect로 n초후 2개의 카드가 다시 뒤집어질수있게 idx를 저장해야한다.
         // lock 변수도 있어야함
+        action.payload.setBoardOption({
+          isLocked: true,
+          isFlipBooked: true,
+          idxes: [thisCardIdx, firstCardIdx],
+        });
+
         return turnFlipNthIdxCard(state, thisCardIdx);
+      } else {
+        //페어를 만든경우
+        setFirstCard({});
+        state = turnFlipNthIdxCard(state, thisCardIdx);
+        return state;
       }
+      alert('비상');
       return state;
     case ACTION_TYPE.PAUSE:
+      return state;
+    case ACTION_TYPE.UNLOCK:
+      const idx1 = parseInt(action.payload.boardOption.idxes[0]);
+      const idx2 = parseInt(action.payload.boardOption.idxes[1]);
+      state = turnFlipNthIdxCard(state, idx1);
+      state = turnFlipNthIdxCard(state, idx2);
+      action.payload.setBoardOption({
+        ...action.payload.boardOption,
+        idxes: [],
+        isLocked: false,
+        isFlipBooked: false,
+      });
       return state;
     default:
       return state;
@@ -124,7 +152,7 @@ const cardSetting = ({ num, datas }) => {
   return tempArray;
 };
 
-const BoardInGame = ({ num = 2, jsonPath = '/cardData.json' }) => {
+const BoardInGame = ({ num = 6, jsonPath = '/cardData.json' }) => {
   /** 뒤집을 두장 중 첫번째를 지칭하는 변수 */
   const [firstCard, setFirstCard] = useState({});
 
@@ -133,13 +161,9 @@ const BoardInGame = ({ num = 2, jsonPath = '/cardData.json' }) => {
 
   /** 배열안에는 객체들이 들어가고 객체에는 imagePath와name이 차례로 들어감 */
   const [cardsInBoard, setCardsInBoard] = useReducer(reducer, []);
-
-  const [isLocked, setIsLocked] = useState(false);
-  const [isFlipBooked, setIsFlipBooked] = useState(false);
-
   const [boardOption, setBoardOption] = useState({
-    isLocked,
-    isFlipBooked,
+    isLocked: false,
+    isFlipBooked: false,
     idxes: [],
   });
 
@@ -166,20 +190,22 @@ const BoardInGame = ({ num = 2, jsonPath = '/cardData.json' }) => {
   }, []);
 
   useEffect(() => {
-    if (isLocked) {
-      setTimeout(() => {
+    if (boardOption.isLocked) {
+      const timeOutId = setTimeout(() => {
         setCardsInBoard({
           type: ACTION_TYPE.UNLOCK,
           payload: { boardOption, setBoardOption, setFirstCard }, //여기서부터 할차례
         });
-      }, 2000);
+      }, 1000);
+
+      return () => clearTimeout(timeOutId);
     }
   });
 
   console.log('board rerendered!');
 
   return (
-    <BoardOptionsContext.Provider value={boardOption}>
+    <BoardOptionsContext.Provider value={{ boardOption, setBoardOption }}>
       <FirstCardContext.Provider value={firstCard}>
         <div className="Board">
           {cardsInBoard != null &&

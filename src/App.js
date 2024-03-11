@@ -46,7 +46,7 @@ function App() {
               />
               <Route
                 path="/board"
-                element={<BoardInGame num="2" jsonPath="/cardData.json" />}
+                element={<BoardInGame jsonPath="/cardData.json" />}
               />
               <Route path="/isout" element={<IsOutsideInfoComeLater />} />
               <Route path="/fetchtest" element={<FetchTest />} />

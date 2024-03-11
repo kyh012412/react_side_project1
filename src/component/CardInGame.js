@@ -19,7 +19,7 @@ const CardInGame = ({
   ACTION_TYPE,
 }) => {
   const firstCard = useContext(FirstCardContext);
-  const BoardOption = useContext(BoardOptionsContext);
+  const { boardOption, setBoardOption } = useContext(BoardOptionsContext);
 
   return (
     <div
@@ -33,7 +33,8 @@ const CardInGame = ({
             firstCard,
             thisCard: e.currentTarget,
             setFirstCard,
-            BoardOption,
+            boardOption,
+            setBoardOption,
           },
         })
       }
