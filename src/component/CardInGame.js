@@ -6,7 +6,7 @@ import '../css/farm.css';
  * @param {String} imagePath 이미지 경로
  * @returns
  */
-const CardInGame = ({ key2, name, imagePath, firstCard, setFirstCard }) => {
+const CardInGame = ({ name, imagePath, firstCard, setFirstCard }) => {
   const [isDisabled, setDisable] = new useState(false);
   const [isFlipped, setIsFlipped] = new useState(false);
 
@@ -15,7 +15,7 @@ const CardInGame = ({ key2, name, imagePath, firstCard, setFirstCard }) => {
       return;
     }
 
-    if (firstCard == null) {
+    if (firstCard == null || Object.keys(firstCard).length === 0) {
       setFirstCard(thisCard);
       setIsFlipped(!isFlipped);
       return;
@@ -35,7 +35,6 @@ const CardInGame = ({ key2, name, imagePath, firstCard, setFirstCard }) => {
 
   return (
     <div
-      key={key2}
       className={`card ${isFlipped ? 'flip' : ''}`}
       data-name={name}
       onClick={(e) => clickCard(firstCard, e.currentTarget)}

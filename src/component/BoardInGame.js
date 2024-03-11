@@ -60,13 +60,14 @@ const cardSetting = ({ num, datas }) => {
       tempArray.push(tempInputValue);
     }
   }
+  const rngDate = new Date();
   const newCardCount = parsedNum % datas.length;
   for (let i = 0; i < newCardCount; i++) {
-    let tempInputValue = datas[i];
-    tempInputValue.id = Date.now();
-    tempArray.push(tempInputValue);
+    let tempInputValue = { ...datas[i] };
+    tempInputValue.id = rngDate.getTime() + 3 * i;
+    tempArray.push({ ...tempInputValue });
     tempInputValue.id = tempInputValue.id + 1;
-    tempArray.push(tempInputValue);
+    tempArray.push({ ...tempInputValue });
   }
   console.log('완성된 Array', tempArray);
   console.log(tempArray);
@@ -136,7 +137,7 @@ const BoardInGame = ({ num = 2, jsonPath = '/cardData.json' }) => {
         datas.length > 0 &&
         datas.map((data, idx) => (
           <CardInGame
-            key2={data.id}
+            key={data.id}
             name={data.name}
             imagePath={data.imagePath}
             firstCard={firstCard}

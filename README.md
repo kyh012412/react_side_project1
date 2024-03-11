@@ -57,5 +57,18 @@ npm start
 - 알파벳 정리하기
 - 복호화 가능한 js에서 사용하는 암호화 방식
 
-###### rebuild 
+###### rebuild
+
 - fetch => useState 올바르게 되는지 확인
+
+###### 객체비교
+
+```js
+const firstCard = {};
+
+// 빈 객체 비교
+console.log(firstCard === {}); // true
+
+// 값과 타입 비교
+console.log(firstCard == {}); // false
+```
