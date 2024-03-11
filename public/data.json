@@ -26,5 +26,19 @@
       "link": ["https://getbootstrap.kr/docs/5.3/components/navbar/#%ec%a7%80%ec%9b%90-%ec%bd%98%ed%85%90%ec%b8%a0"],
       "mypage": ""
     }
+  ],
+  "testList":[
+    {
+      "id":1,
+      "content":"내용1"
+    },
+    {
+      "id":2,
+      "content":"내용2"
+    },
+    {
+      "id":2,
+      "content":"내용3"
+    }
   ]
 }

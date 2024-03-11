@@ -2,20 +2,21 @@ import { useEffect, useState } from 'react';
 // import datas from '../data.json';
 import mycss from '../css/my.css';
 
-const Home = ({fetch_url='/data.json'}) => {
+const Home = ({ fetch_url = '/data.json', key = 'studyList' }) => {
   const [datas, setDatas] = useState([]);
+  const [fetchKey, setFetchKey] = useState(key);
 
   const fetchData = async () => {
     const response = await fetch(fetch_url);
     // console.log(response);
     const jsonData = await response.json();
     // console.log(jsonData);
-    setDatas(jsonData.studyList);
+    await setDatas(jsonData[fetchKey]);
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [datas, fetchKey]);
 
   return (
     <>

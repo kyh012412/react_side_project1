@@ -5,10 +5,14 @@
  * @param {*} Content 실질 기능이 담겨야하는 곳
  * @returns 반환되는 코드 : 토클기능버튼 + 까꿍하는 div
  */
-const Collapse = ({id="collapseWidthExample",text="Toggle width collapse",Content="콘텐츠 누락"}) => {
+const Collapse = ({
+  id = 'collapseWidthExample',
+  text = 'Toggle width collapse',
+  Content = '콘텐츠 누락',
+}) => {
   return (
     <>
-      <p>
+      <>
         <button
           className="btn btn-primary"
           type="button"
@@ -19,10 +23,10 @@ const Collapse = ({id="collapseWidthExample",text="Toggle width collapse",Conten
         >
           {text}
         </button>
-      </p>
-      <div style={{ Height:"120px"}}>
+      </>
+      <div style={{ Height: '120px' }}>
         <div className="collapse collapse-horizontal" id={id}>
-          <div className="card card-body" style={{width: "300px"}}>
+          <div className="card card-body" style={{ width: '300px' }}>
             {Content}
           </div>
         </div>
