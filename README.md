@@ -16,6 +16,9 @@ npm install
 npm start
 ```
 
+또는
+[github.io](https://kyh012412.github.io/react_side_project1)
+
 ### 배워야 할 기술들 (프로젝트 관련)
 
 - 어디서든 접근가능한 db 만들기 (vm 또는 집 db포트 열기)
