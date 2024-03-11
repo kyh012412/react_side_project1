@@ -1,8 +1,8 @@
 {
-  "name": "react_side_project",
+  "homepage": "https://kyh012412.github.io/react_side_project1",
+  "name": "react_side_project1",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kyh012412.github.io/react_side_project1",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
