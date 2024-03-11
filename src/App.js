@@ -31,10 +31,10 @@ function App() {
           </IdContext.Provider>
         </div>
         <div className="middle-center" id="Content">
-          {/* <BoardInGame /> */}
-          <BrowserRouter basename="/react_side_project1">
+          {/* <BoardInGame /> */ console.log(process.env.PUBLIC_URL)}
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Routes>
-              <Route exact path="/" element={<></>} />
+              <Route path="/" element={<></>} />
               <Route path="/collapse" element={<Collapse />} />
               <Route path="/carousel" element={<Carousel />} />
               <Route path="/dropdowns" element={<Dropdown />} />
