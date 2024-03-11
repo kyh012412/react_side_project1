@@ -10,7 +10,6 @@ const CollapseSet = () => {
   const fetchData = async () => {
     const response = await fetch('./json/testJsonData.json');
     const fetchedDatas = await response.json();
-    console.log(fetchedDatas);
     await setDatas(fetchedDatas);
     await setKeys(Object.keys(fetchedDatas));
   };

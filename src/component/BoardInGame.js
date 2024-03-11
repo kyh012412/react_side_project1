@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
+import { memo, useEffect, useReducer, useState } from 'react';
 import CardInGame from './CardInGame';
 
 /** @todo todoList
@@ -34,14 +34,14 @@ const reducer = (state, action) => {
 const cardSetting = ({ num, datas }) => {
   console.log(typeof num, num);
   num = parseInt(num); // 하프값 num
-  const newDeckCount = num / datas.length;
+  const newDeckCount = Math.floor(num / datas.length);
   console.log('필요한 새로운덱 :', newDeckCount);
   let tempArray = [];
   //newDeckCount가 0일 때는 작동하지 않음
   for (let i = 0; i < newDeckCount; i++) {
     for (let j = 0; j < datas.length; j++) {
       const tempInputValue = datas[j];
-      tempInputValue = { ...tempInputValue, id: Date.now() };
+      // tempInputValue = { ...tempInputValue, id: Date.now() };
       tempArray.push(tempInputValue);
       tempArray.push(tempInputValue);
     }
@@ -78,26 +78,33 @@ const BoardInGame = ({ num = 2, jsonPath = '/cardData.json' }) => {
 
   useEffect(() => {
     fetchJsonData();
-    // setCardsInBoard({
-    //   type: ACTION_TYPE.SETTING,
-    //   payload: { num, datas },
-    // });
-    console.log(datas);
+    console.log('fetch ended');
   }, []);
-  console.log(datas);
+  // console.log(datas);
+
+  useEffect(() => {
+    setCardsInBoard({
+      type: ACTION_TYPE.SETTING,
+      payload: { num, datas },
+    });
+    console.log('cardsInBoard set!!');
+  }, [datas]);
+
+  console.log('board rerendered!');
 
   return (
     <div className="Board">
       {cardsInBoard.length > 0 &&
         cardsInBoard.map((data, idx) => (
           <CardInGame
+            key={idx}
             name={data.name}
             imagePath={data.imagePath}
             firstCard={firstCard}
             setFirstCard={setFirstCard}
           />
         ))}
-      {cardsInBoard <= 0 && <h1>????</h1>}
+      {cardsInBoard.length <= 0 && <h1>????</h1>}
     </div>
   );
 };
