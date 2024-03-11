@@ -34,7 +34,7 @@ function App() {
           {/* <BoardInGame /> */}
           <BrowserRouter>
             <Routes>
-              <Route path="/" />
+              <Route path="/" element={<></>} />
               <Route path="/collapse" element={<Collapse />} />
               <Route path="/carousel" element={<Carousel />} />
               <Route path="/dropdowns" element={<Dropdown />} />

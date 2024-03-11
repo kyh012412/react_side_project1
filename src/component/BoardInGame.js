@@ -1,4 +1,4 @@
-import { memo, useEffect, useReducer, useState } from 'react';
+import { memo, useEffect, useMemo, useReducer, useState } from 'react';
 import CardInGame from './CardInGame';
 
 /** @todo todoList
@@ -19,8 +19,10 @@ const ACTION_TYPE = {
 };
 
 const reducer = (state, action) => {
+  console.log('reducer on');
   switch (action.type) {
     case ACTION_TYPE.SETTING:
+      console.log('action.payload', action.payload);
       return cardSetting(action.payload);
     case ACTION_TYPE.PAUSE:
       return state;
@@ -32,11 +34,23 @@ const reducer = (state, action) => {
 };
 
 const cardSetting = ({ num, datas }) => {
-  console.log(typeof num, num);
-  num = parseInt(num); // 하프값 num
-  const newDeckCount = Math.floor(num / datas.length);
-  console.log('필요한 새로운덱 :', newDeckCount);
+  console.log('taken value num', num);
+  console.log('taken value datas', datas);
   let tempArray = [];
+  console.log('cardSetting start');
+  const parsedNum = parseInt(num); //하프값
+  console.log(parsedNum);
+  if (datas == null) {
+    return tempArray;
+  }
+  if (datas.length == 0) {
+    alert(parsedNum);
+    alert(datas);
+    alert('datas.length이 0인상태!! 긴급 break;');
+    return tempArray;
+  }
+  const newDeckCount = Math.floor(parsedNum / datas.length);
+  console.log('필요한 새로운덱 :', newDeckCount);
   //newDeckCount가 0일 때는 작동하지 않음
   for (let i = 0; i < newDeckCount; i++) {
     for (let j = 0; j < datas.length; j++) {
@@ -46,11 +60,12 @@ const cardSetting = ({ num, datas }) => {
       tempArray.push(tempInputValue);
     }
   }
-  const newCardCount = num % datas.length;
+  const newCardCount = parsedNum % datas.length;
   for (let i = 0; i < newCardCount; i++) {
     let tempInputValue = datas[i];
     tempInputValue.id = Date.now();
     tempArray.push(tempInputValue);
+    tempInputValue.id = tempInputValue.id + 1;
     tempArray.push(tempInputValue);
   }
   console.log('완성된 Array', tempArray);
@@ -60,7 +75,7 @@ const cardSetting = ({ num, datas }) => {
 
 const BoardInGame = ({ num = 2, jsonPath = '/cardData.json' }) => {
   /** 뒤집을 두장 중 첫번째를 지칭하는 변수 */
-  const [firstCard, setFirstCard] = useState();
+  const [firstCard, setFirstCard] = useState({});
 
   /** 덱의 기본정보를 만들수 있는 datas */
   const [datas, setDatas] = useState([]);
@@ -69,42 +84,66 @@ const BoardInGame = ({ num = 2, jsonPath = '/cardData.json' }) => {
   const [cardsInBoard, setCardsInBoard] = useReducer(reducer, []);
 
   const fetchJsonData = async () => {
+    console.log('fetch start');
+    console.log(jsonPath);
     const response = await fetch(jsonPath);
     // console.log(response);
     const jsonData = await response.json();
     // console.log(jsonData);
+    console.log('fetch End');
     setDatas(jsonData);
+    console.log('fetch End2');
+    return jsonData;
   };
 
   useEffect(() => {
-    fetchJsonData();
-    console.log('fetch ended');
-  }, []);
-  // console.log(datas);
-
-  useEffect(() => {
-    setCardsInBoard({
-      type: ACTION_TYPE.SETTING,
-      payload: { num, datas },
+    fetchJsonData().then((jsonData) => {
+      setCardsInBoard({
+        type: ACTION_TYPE.SETTING,
+        payload: { num, datas: jsonData },
+      });
     });
-    console.log('cardsInBoard set!!');
-  }, [datas]);
+  }, []);
+
+  // useEffect(() => {
+  //   console.log('start patch');
+  //   setCardsInBoard({
+  //     type: ACTION_TYPE.SETTING,
+  //     payload: { num, datas },
+  //   });
+  //   console.log('patch done');
+  //   // console.log('currently did nothing');
+  // }, [datas]);
 
   console.log('board rerendered!');
 
   return (
     <div className="Board">
-      {cardsInBoard.length > 0 &&
+      {cardsInBoard != null &&
+        cardsInBoard.length > 0 &&
         cardsInBoard.map((data, idx) => (
           <CardInGame
-            key={idx}
+            key={data.id}
             name={data.name}
             imagePath={data.imagePath}
             firstCard={firstCard}
             setFirstCard={setFirstCard}
           />
         ))}
-      {cardsInBoard.length <= 0 && <h1>????</h1>}
+      {(cardsInBoard == null || cardsInBoard.length) <= 0 && <h1>????</h1>}
+      {!(cardsInBoard != null && cardsInBoard.length > 0) &&
+        datas != null &&
+        datas.length > 0 &&
+        datas.map((data, idx) => (
+          <CardInGame
+            key2={data.id}
+            name={data.name}
+            imagePath={data.imagePath}
+            firstCard={firstCard}
+            setFirstCard={setFirstCard}
+          />
+        ))}
+      {console.log(datas, '!!!!!!!!!!!!!!!')}
     </div>
   );
 };
