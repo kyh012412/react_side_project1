@@ -1,5 +1,5 @@
 {
-  "key1": [
+  "v1": [
     { "id": 1, "text": "key1id1", "link": "/board" },
     { "id": 2, "text": "key1id2" },
     { "id": 3, "text": "key1id3" }
