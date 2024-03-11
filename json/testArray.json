@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "title": "collapse",
+    "link": [
+      "https://getbootstrap.kr/docs/5.3/components/collapse/#%ec%bd%9c%eb%9e%a9%ec%8a%a4"
+    ],
+    "mypage": "/collapse"
+  },
+  {
+    "id": 2,
+    "title": "carousel",
+    "link": ["https://getbootstrap.kr/docs/5.3/components/carousel/"],
+    "mypage": ""
+  },
+  {
+    "id": 3,
+    "title": "dropdowns",
+    "link": ["https://getbootstrap.kr/docs/5.3/components/dropdowns/#%ec%a0%91%ea%b7%bc%ec%84%b1"],
+    "mypage": ""
+  },
+  {
+    "id": 4,
+    "title": "navbar",
+    "link": ["https://getbootstrap.kr/docs/5.3/components/navbar/#%ec%a7%80%ec%9b%90-%ec%bd%98%ed%85%90%ec%b8%a0"],
+    "mypage": ""
+  }
+]
