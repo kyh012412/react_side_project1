@@ -1,9 +1,12 @@
 import { memo, useEffect, useMemo, useReducer, useState } from 'react';
 import CardInGame from './CardInGame';
+import { FirstCardContext } from '../context/FirstCardContext';
 
 /** @todo todoList
   카드의 개수 입력을 받아야함
   카드가 최대 6부이지만 조합으로 카드 증식하는방법?
+  셔플필요
+  카드에 id입력필요
 */
 
 /**
@@ -18,15 +21,43 @@ const ACTION_TYPE = {
   FLIP: 'flip',
 };
 
+const isEmpty = (somethingObject) => {
+  if (Object.keys(somethingObject).length === 0) {
+    return true;
+  }
+  return false;
+};
+
 const reducer = (state, action) => {
   console.log('reducer on');
   switch (action.type) {
     case ACTION_TYPE.SETTING:
-      console.log('action.payload', action.payload);
+      console.log('reducer setting asked');
       return cardSetting(action.payload);
     case ACTION_TYPE.PAUSE:
       return state;
     case ACTION_TYPE.FLIP:
+      console.log('reducer flip asked');
+      const thisCard = action.payload.thisCard;
+      let firstCard = action.payload.firstCard;
+      const setFirstCard = action.payload.setFirstCard;
+      //처음 카드를 선택하는 경우
+      console.log(firstCard);
+      if (isEmpty(firstCard)) {
+        console.log('첫번째 카드 없음 감지');
+        console.log(thisCard.dataset.idx);
+        const thisCardIdx = parseInt(thisCard.dataset.idx);
+        const thisCardInfo = {
+          ...state[thisCardIdx],
+          isFlipped: true,
+        };
+        setFirstCard(thisCard);
+        state[thisCardIdx] = thisCardInfo;
+        return [...state];
+      } else {
+        console.log('첫번째 카드 있음 감지');
+        //
+      }
       return state;
     default:
       return state;
@@ -63,7 +94,7 @@ const cardSetting = ({ num, datas }) => {
   const rngDate = new Date();
   const newCardCount = parsedNum % datas.length;
   for (let i = 0; i < newCardCount; i++) {
-    let tempInputValue = { ...datas[i] };
+    let tempInputValue = { ...datas[i], isDisabled: false, isFlipped: false };
     tempInputValue.id = rngDate.getTime() + 3 * i;
     tempArray.push({ ...tempInputValue });
     tempInputValue.id = tempInputValue.id + 1;
@@ -101,7 +132,7 @@ const BoardInGame = ({ num = 2, jsonPath = '/cardData.json' }) => {
     fetchJsonData().then((jsonData) => {
       setCardsInBoard({
         type: ACTION_TYPE.SETTING,
-        payload: { num, datas: jsonData },
+        payload: { num, datas: jsonData, setFirstCard },
       });
     });
   }, []);
@@ -119,33 +150,30 @@ const BoardInGame = ({ num = 2, jsonPath = '/cardData.json' }) => {
   console.log('board rerendered!');
 
   return (
-    <div className="Board">
-      {cardsInBoard != null &&
-        cardsInBoard.length > 0 &&
-        cardsInBoard.map((data, idx) => (
-          <CardInGame
-            key={data.id}
-            name={data.name}
-            imagePath={data.imagePath}
-            firstCard={firstCard}
-            setFirstCard={setFirstCard}
-          />
-        ))}
-      {(cardsInBoard == null || cardsInBoard.length) <= 0 && <h1>????</h1>}
-      {!(cardsInBoard != null && cardsInBoard.length > 0) &&
-        datas != null &&
-        datas.length > 0 &&
-        datas.map((data, idx) => (
-          <CardInGame
-            key={data.id}
-            name={data.name}
-            imagePath={data.imagePath}
-            firstCard={firstCard}
-            setFirstCard={setFirstCard}
-          />
-        ))}
-      {console.log(datas, '!!!!!!!!!!!!!!!')}
-    </div>
+    <FirstCardContext.Provider value={firstCard}>
+      <div className="Board">
+        {cardsInBoard != null &&
+          cardsInBoard.length > 0 &&
+          cardsInBoard.map((data, idx) => (
+            <CardInGame
+              key={data.id}
+              idx={idx}
+              name={data.name}
+              imagePath={data.imagePath}
+              setFirstCard={setFirstCard}
+              setCardsInBoard={setCardsInBoard} //dispatch
+              isDisabled={data.isDisabled}
+              isFlipped={data.isFlipped}
+              ACTION_TYPE={ACTION_TYPE}
+            />
+          ))}
+        {(cardsInBoard == null || cardsInBoard.length) <= 0 && <h1>????</h1>}
+        {!(cardsInBoard != null && cardsInBoard.length > 0) &&
+          datas != null &&
+          datas.length > 0 && <h1>ERROR!!!</h1>}
+        {console.log(datas, '!!!!!!!!!!!!!!!')}
+      </div>
+    </FirstCardContext.Provider>
   );
 };
 export default BoardInGame;
