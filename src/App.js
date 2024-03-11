@@ -29,31 +29,29 @@ function App() {
           <IdContext.Provider value="leftNavCollapseBody">
             <CollapseSet />
           </IdContext.Provider>
-          {/* <Collapse
-            id="leftNav"
-            text="네이게이션"
-            Content={<Nav id={'leftNav'} />}
-          />
-          <Collapse
-            id="itemsNav"
-            text="아이템"
-            Content={<Nav id="itemsNav" />}
-          /> */}
         </div>
         <div className="middle-center" id="Content">
-          {/* <BrowserRouter>
+          {/* <BoardInGame /> */}
+          <BrowserRouter>
             <Routes>
               <Route path="/" />
               <Route path="/collapse" element={<Collapse />} />
               <Route path="/carousel" element={<Carousel />} />
               <Route path="/dropdowns" element={<Dropdown />} />
-              <Route path="/card" element={<CardInGame 
-              name="asset0" imagePath="/img/card/asset0.svg"/>} />              
-              <Route path="/board" element={<BoardInGame num="2" jsonPath="/cardData.json" />} />
-              <Route path="/isout" element={<IsOutsideInfoComeLater/>}/>
-              <Route path='/fetchtest' element={<FetchTest/>}/>
+              <Route
+                path="/card"
+                element={
+                  <CardInGame name="asset0" imagePath="/img/card/asset0.svg" />
+                }
+              />
+              <Route
+                path="/board"
+                element={<BoardInGame num="2" jsonPath="/cardData.json" />}
+              />
+              <Route path="/isout" element={<IsOutsideInfoComeLater />} />
+              <Route path="/fetchtest" element={<FetchTest />} />
             </Routes>
-          </BrowserRouter> */}
+          </BrowserRouter>
         </div>
         <div className="middle-right"></div>
       </div>

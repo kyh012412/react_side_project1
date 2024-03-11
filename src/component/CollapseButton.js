@@ -10,18 +10,14 @@ const CollapseButton = ({ text, setContent, value }) => {
   const id = useContext(IdContext);
 
   const handleButtonClicked = () => {
-    console.log('try parse');
-
     const parsedContent = value.map((data) => {
       console.log(data);
       return (
         <React.Fragment key={data.id}>
-          <h1>{data.id}</h1>
           <h2>{data.text}</h2>
         </React.Fragment>
       );
     });
-    console.log(parsedContent);
     setContent(parsedContent);
   };
 
