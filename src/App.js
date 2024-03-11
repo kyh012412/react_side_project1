@@ -32,7 +32,7 @@ function App() {
         </div>
         <div className="middle-center" id="Content">
           {/* <BoardInGame /> */}
-          <BrowserRouter basename={'react_side_project1'}>
+          <BrowserRouter basename="/react_side_project1">
             <Routes>
               <Route exact path="/" element={<></>} />
               <Route path="/collapse" element={<Collapse />} />
