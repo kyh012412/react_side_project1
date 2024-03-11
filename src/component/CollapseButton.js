@@ -14,7 +14,9 @@ const CollapseButton = ({ text, setContent, value }) => {
       console.log(data);
       return (
         <React.Fragment key={data.id}>
-          <h2>{data.text}</h2>
+          <a href={data.link}>
+            <h3>{data.text}</h3>
+          </a>
         </React.Fragment>
       );
     });
