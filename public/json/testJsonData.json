@@ -1,0 +1,22 @@
+{
+  "key1": [
+    { "id": 1, "text": "key1id1" },
+    { "id": 2, "text": "key1id2" },
+    { "id": 3, "text": "key1id3" }
+  ],
+  "key2": [
+    { "id": 1, "text": "key2id1" },
+    { "id": 2, "text": "key2id2" },
+    { "id": 3, "text": "key2id3" }
+  ],
+  "key3": [
+    { "id": 1, "text": "key3id1" },
+    { "id": 2, "text": "key3id2" },
+    { "id": 3, "text": "key3id3" }
+  ],
+  "key4": [
+    { "id": 1, "text": "key3id1" },
+    { "id": 2, "text": "key3id2" },
+    { "id": 3, "text": "key3id3" }
+  ]
+}

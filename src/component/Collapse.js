@@ -12,18 +12,16 @@ const Collapse = ({
 }) => {
   return (
     <>
-      <>
-        <button
-          className="btn btn-primary"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target={`#${id}`}
-          aria-expanded="false"
-          aria-controls={id}
-        >
-          {text}
-        </button>
-      </>
+      <button
+        className="btn btn-primary"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target={`#${id}`}
+        aria-expanded="false"
+        aria-controls={id}
+      >
+        {text}
+      </button>
       <div style={{ Height: '120px' }}>
         <div className="collapse collapse-horizontal" id={id}>
           <div className="card card-body" style={{ width: '300px' }}>
