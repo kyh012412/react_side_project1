@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import '../css/farm.css';
 import { FirstCardContext } from '../context/FirstCardContext';
+import { BoardOptionsContext } from '../context/BoardOptionsContext';
 
 /**
  * @param {String} name meta이름
@@ -18,6 +19,7 @@ const CardInGame = ({
   ACTION_TYPE,
 }) => {
   const firstCard = useContext(FirstCardContext);
+  const BoardOption = useContext(BoardOptionsContext);
 
   return (
     <div
@@ -31,6 +33,7 @@ const CardInGame = ({
             firstCard,
             thisCard: e.currentTarget,
             setFirstCard,
+            BoardOption,
           },
         })
       }
