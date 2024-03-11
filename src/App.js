@@ -34,7 +34,7 @@ function App() {
           {/* <BoardInGame /> */}
           <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Routes>
-              <Route path="/*" element={<></>} />
+              <Route exact path="/" element={<></>} />
               <Route path="/collapse" element={<Collapse />} />
               <Route path="/carousel" element={<Carousel />} />
               <Route path="/dropdowns" element={<Dropdown />} />
