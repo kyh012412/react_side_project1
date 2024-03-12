@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { IdContext } from '../context/IdContext';
+import { Link } from 'react-router-dom';
 
 /**
  * @param {*} text 버튼에 적힐 이름
@@ -14,9 +15,9 @@ const CollapseButton = ({ text, setContent, value }) => {
       console.log(data);
       return (
         <React.Fragment key={data.id}>
-          <a href={data.link}>
+          <Link to={data.link}>
             <h3>{data.text}</h3>
-          </a>
+          </Link>
         </React.Fragment>
       );
     });

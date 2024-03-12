@@ -8,10 +8,11 @@ const CollapseSet = () => {
   const [content, setContent] = useState('초기값');
 
   const fetchData = async () => {
-    const response = await fetch('./json/testJsonData.json');
+    const response = await fetch('/json/testJsonData.json');
+    console.log(response);
     const fetchedDatas = await response.json();
-    await setDatas(fetchedDatas);
-    await setKeys(Object.keys(fetchedDatas));
+    setDatas(fetchedDatas);
+    setKeys(Object.keys(fetchedDatas));
   };
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const CollapseSet = () => {
             />
           );
         })}
-      <CollapseBody Content={content} />
+      {keys.length > 0 && <CollapseBody Content={content} />}
     </>
   );
 };

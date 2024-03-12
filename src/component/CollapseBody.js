@@ -16,4 +16,4 @@ const CollapseBody = ({ Content = 'content 누락' }) => {
   );
 };
 
-export default memo(CollapseBody);
+export default CollapseBody;

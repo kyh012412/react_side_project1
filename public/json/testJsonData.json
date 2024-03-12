@@ -2,10 +2,11 @@
   "v1": [
     { "id": 1, "text": "Board", "link": "/board" }
   ],
-  "단순 할일": [
+  "할일": [
     { "id": 1, "text": "Prettier 커스텀" },
-    { "id": 2, "text": "key2id2" },
-    { "id": 3, "text": "key2id3" }
+    { "id": 2, "text": "배포확인" },
+    { "id": 3, "text": "다음 만들 과제 찾기" },
+    { "id": 4, "text": "CSS찾기" }
   ],
   "key3": [
     { "id": 1, "text": "key3id1" },

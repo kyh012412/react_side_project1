@@ -10,12 +10,15 @@ import CardInGame from './component/CardInGame';
 import BoardInGame from './component/BoardInGame';
 import IsOutsideInfoComeLater from './component/IsOutsideInfoComeLater';
 import FetchTest from './component/FetchTest';
-import CollapseButton from './component/CollapseButton';
-import CollapseBody from './component/CollapseBody';
 import { IdContext } from './context/IdContext';
 import CollapseSet from './component/CollapseSet';
+import NotFound from './component/NotFound';
+import { useEffect } from 'react';
 
 function App() {
+  const public_url = process.env.PUBLIC_URL;
+
+  console.log(process.env.PUBLIC_URL);
   return (
     <>
       {/* 12시방향 가로로 긴 직사각형 */}
@@ -31,27 +34,25 @@ function App() {
           </IdContext.Provider>
         </div>
         <div className="middle-center" id="Content">
-          {/* <BoardInGame jsonPath="/cardData.json" /> */}
-          <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <Routes>
-              <Route path="/" element={<></>} />
-              <Route path="/collapse" element={<Collapse />} />
-              <Route path="/carousel" element={<Carousel />} />
-              <Route path="/dropdowns" element={<Dropdown />} />
-              <Route
-                path="/card"
-                element={
-                  <CardInGame name="asset0" imagePath="/img/card/asset0.svg" />
-                }
-              />
-              <Route
-                path="/board"
-                element={<BoardInGame jsonPath="/cardData.json" />}
-              />
-              <Route path="/isout" element={<IsOutsideInfoComeLater />} />
-              <Route path="/fetchtest" element={<FetchTest />} />
-            </Routes>
-          </BrowserRouter>
+          <Routes>
+            <Route path="/" element={<></>} />
+            <Route path="/collapse" element={<Collapse />} />
+            <Route path="/carousel" element={<Carousel />} />
+            <Route path="/dropdowns" element={<Dropdown />} />
+            <Route
+              path="/card"
+              element={
+                <CardInGame name="asset0" imagePath="/img/card/asset0.svg" />
+              }
+            />
+            <Route
+              path="/board"
+              element={<BoardInGame jsonPath="/cardData.json" />}
+            />
+            <Route path="/isout" element={<IsOutsideInfoComeLater />} />
+            <Route path="/fetchtest" element={<FetchTest />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </div>
         <div className="middle-right"></div>
       </div>
