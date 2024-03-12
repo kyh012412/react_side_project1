@@ -2,6 +2,7 @@ import { memo, useEffect, useMemo, useReducer, useState } from 'react';
 import CardInGame from './CardInGame';
 import { FirstCardContext } from '../context/FirstCardContext';
 import { BoardOptionsContext } from '../context/BoardOptionsContext';
+import { shuffleArray } from '../common/utils';
 
 /** @todo todoList
   카드의 개수 입력을 받아야함
@@ -180,7 +181,7 @@ const cardSetting = ({ num, datas }) => {
     tempArray.push({ ...tempInputValue });
   }
   console.log('완성된 Array', tempArray);
-  console.log(tempArray);
+  shuffleArray(tempArray);
   return tempArray;
 };
 
