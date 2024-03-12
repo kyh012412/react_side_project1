@@ -2,8 +2,8 @@
   "v1": [
     { "id": 1, "text": "Board", "link": "/board" }
   ],
-  "key2": [
-    { "id": 1, "text": "key2id1" },
+  "단순 할일": [
+    { "id": 1, "text": "Prettier 커스텀" },
     { "id": 2, "text": "key2id2" },
     { "id": 3, "text": "key2id3" }
   ],

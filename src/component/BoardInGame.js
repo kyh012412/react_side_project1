@@ -30,10 +30,19 @@ const isEmpty = (somethingObject) => {
   return false;
 };
 
-const turnFlipNthIdxCard = (state, idx) => {
+const flipNthCard = (state, idx) => {
   const thisCardInfo = {
     ...state[idx],
     isFlipped: !state[idx].isFlipped,
+  };
+  state[idx] = thisCardInfo;
+  return [...state];
+};
+
+const disableNthCard = (state, idx) => {
+  const thisCardInfo = {
+    ...state[idx],
+    isDisabled: !state[idx].isDisabled,
   };
   state[idx] = thisCardInfo;
   return [...state];
@@ -46,6 +55,16 @@ const reducer = (state, action) => {
       console.log('reducer setting asked');
       return cardSetting(action.payload);
     case ACTION_TYPE.FLIP:
+      /* 검증한 케이스 :
+      (선 예외처리)
+        보드가 잠겨있을때
+        두번째 카드로서 첫번째 카드 그자체를 골랐을때
+        비활성화된 카드를 선택했을 때
+        두번째 카드로 페어 실패했을 때
+
+        첫번째 카드일때
+        두번째 카드로 페어 성공
+       */
       console.log('reducer flip asked');
       const thisCard = action.payload.thisCard;
       let firstCard = action.payload.firstCard;
@@ -55,28 +74,25 @@ const reducer = (state, action) => {
       const firstCardIdx = isEmpty(firstCard)
         ? -1
         : parseInt(firstCard.dataset.idx);
-
-      //처음 카드를 선택하는 경우
       console.log(firstCard);
       if (action.payload.boardOption.isLocked) {
-        alert('너무 빨라요!');
         // 잠겨있는 경우
+        alert('너무 빨라요!');
         return state;
       } else if (thisCardIdx === firstCardIdx) {
         //첫번째 카드를 또 고른 경우
         alert('이미 고른카드!');
         return state;
-
-        //페어를 못 만든경우
-        // idx는 더 이상 체크하지 않아도됨
       } else if (state[thisCardIdx].isDisabled) {
+        //페어를 못 만든경우
         alert('이미 짝을 맞춘 카드!');
         return state;
       }
       if (isEmpty(firstCard)) {
+        //처음 카드를 선택하는 경우
         console.log('첫번째 카드 없음 감지');
         setFirstCard(thisCard);
-        return turnFlipNthIdxCard(state, thisCardIdx);
+        return flipNthCard(state, thisCardIdx);
       } else if (thisCard.dataset.name !== firstCard.dataset.name) {
         //1~2초 뒤에 다시 자동으로 뒤집을수있게 변수하나를 바꿔줘야하며
         //변수에 따라서 useEffect로 n초후 2개의 카드가 다시 뒤집어질수있게 idx를 저장해야한다.
@@ -87,12 +103,14 @@ const reducer = (state, action) => {
           isFlipBooked: true,
           idxes: [thisCardIdx, firstCardIdx],
         });
-        state = turnFlipNthIdxCard(state, thisCardIdx);
+        state = flipNthCard(state, thisCardIdx);
         return state;
       } else {
         //페어를 만든경우
+        state = disableNthCard(state, firstCardIdx);
+        state = disableNthCard(state, thisCardIdx);
+        state = flipNthCard(state, thisCardIdx);
         setFirstCard({});
-        state = turnFlipNthIdxCard(state, thisCardIdx);
         return state;
       }
       alert('비상');
@@ -102,8 +120,8 @@ const reducer = (state, action) => {
     case ACTION_TYPE.UNLOCK:
       const idx1 = parseInt(action.payload.boardOption.idxes[0]);
       const idx2 = parseInt(action.payload.boardOption.idxes[1]);
-      state = turnFlipNthIdxCard(state, idx1);
-      state = turnFlipNthIdxCard(state, idx2);
+      state = flipNthCard(state, idx1);
+      state = flipNthCard(state, idx2);
       action.payload.setBoardOption({
         ...action.payload.boardOption,
         idxes: [],
@@ -188,9 +206,8 @@ const BoardInGame = ({ num = 6, jsonPath = '/cardData.json' }) => {
     // console.log(response);
     const jsonData = await response.json();
     // console.log(jsonData);
-    console.log('fetch End');
     setDatas(jsonData);
-    console.log('fetch End2');
+    console.log('fetch End');
     return jsonData;
   };
 
