@@ -31,8 +31,8 @@ function App() {
           </IdContext.Provider>
         </div>
         <div className="middle-center" id="Content">
-          <BoardInGame jsonPath="/cardData.json" />
-          {/* <BrowserRouter basename={process.env.PUBLIC_URL}>
+          {/* <BoardInGame jsonPath="/cardData.json" /> */}
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Routes>
               <Route path="/" element={<></>} />
               <Route path="/collapse" element={<Collapse />} />
@@ -51,7 +51,7 @@ function App() {
               <Route path="/isout" element={<IsOutsideInfoComeLater />} />
               <Route path="/fetchtest" element={<FetchTest />} />
             </Routes>
-          </BrowserRouter> */}
+          </BrowserRouter>
         </div>
         <div className="middle-right"></div>
       </div>
