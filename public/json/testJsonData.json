@@ -1,8 +1,6 @@
 {
   "v1": [
-    { "id": 1, "text": "key1id1", "link": "/board" },
-    { "id": 2, "text": "key1id2" },
-    { "id": 3, "text": "key1id3" }
+    { "id": 1, "text": "Board", "link": "/board" }
   ],
   "key2": [
     { "id": 1, "text": "key2id1" },
@@ -17,6 +15,8 @@
   "key4": [
     { "id": 1, "text": "key3id1" },
     { "id": 2, "text": "key3id2" },
-    { "id": 3, "text": "key3id3" }
+    { "id": 3, "text": "key3id3" },
+    { "id": 2, "text": "key1id2" },
+    { "id": 3, "text": "key1id3" }
   ]
 }

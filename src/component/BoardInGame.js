@@ -55,35 +55,40 @@ const reducer = (state, action) => {
       const firstCardIdx = isEmpty(firstCard)
         ? -1
         : parseInt(firstCard.dataset.idx);
+
       //처음 카드를 선택하는 경우
       console.log(firstCard);
-      if (isEmpty(firstCard)) {
-        console.log('첫번째 카드 없음 감지');
-        setFirstCard(thisCard);
-        return turnFlipNthIdxCard(state, thisCardIdx);
-
+      if (action.payload.boardOption.isLocked) {
+        alert('너무 빨라요!');
         // 잠겨있는 경우
-      } else if (action.payload.boardOption.isLocked) {
         return state;
-
-        //첫번째 카드를 또 고른 경우
       } else if (thisCardIdx === firstCardIdx) {
+        //첫번째 카드를 또 고른 경우
         alert('이미 고른카드!');
         return state;
 
         //페어를 못 만든경우
         // idx는 더 이상 체크하지 않아도됨
+      } else if (state[thisCardIdx].isDisabled) {
+        alert('이미 짝을 맞춘 카드!');
+        return state;
+      }
+      if (isEmpty(firstCard)) {
+        console.log('첫번째 카드 없음 감지');
+        setFirstCard(thisCard);
+        return turnFlipNthIdxCard(state, thisCardIdx);
       } else if (thisCard.dataset.name !== firstCard.dataset.name) {
         //1~2초 뒤에 다시 자동으로 뒤집을수있게 변수하나를 바꿔줘야하며
         //변수에 따라서 useEffect로 n초후 2개의 카드가 다시 뒤집어질수있게 idx를 저장해야한다.
         // lock 변수도 있어야함
+        setFirstCard({});
         action.payload.setBoardOption({
           isLocked: true,
           isFlipBooked: true,
           idxes: [thisCardIdx, firstCardIdx],
         });
-
-        return turnFlipNthIdxCard(state, thisCardIdx);
+        state = turnFlipNthIdxCard(state, thisCardIdx);
+        return state;
       } else {
         //페어를 만든경우
         setFirstCard({});
@@ -129,18 +134,27 @@ const cardSetting = ({ num, datas }) => {
   }
   const newDeckCount = Math.floor(parsedNum / datas.length);
   console.log('필요한 새로운덱 :', newDeckCount);
+
+  const rngDate = new Date();
   //newDeckCount가 0일 때는 작동하지 않음
   for (let i = 0; i < newDeckCount; i++) {
     for (let j = 0; j < datas.length; j++) {
-      const tempInputValue = datas[j];
-      // tempInputValue = { ...tempInputValue, id: Date.now() };
-      tempArray.push(tempInputValue);
-      tempArray.push(tempInputValue);
+      // 함수화 필요
+      let tempInputValue = {
+        ...datas[j],
+        isDisabled: false,
+        isFlipped: false,
+      };
+      tempInputValue.id = rngDate.getTime() + 3 * (j + i * newDeckCount);
+      tempArray.push({ ...tempInputValue });
+      tempInputValue.id = tempInputValue.id + 1;
+      tempArray.push({ ...tempInputValue });
     }
   }
-  const rngDate = new Date();
+
   const newCardCount = parsedNum % datas.length;
   for (let i = 0; i < newCardCount; i++) {
+    // 함수화 필요
     let tempInputValue = { ...datas[i], isDisabled: false, isFlipped: false };
     tempInputValue.id = rngDate.getTime() + 3 * i;
     tempArray.push({ ...tempInputValue });
