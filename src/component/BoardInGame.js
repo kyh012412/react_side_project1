@@ -68,7 +68,7 @@ const reducer = (state, action) => {
        */
       console.log('reducer flip asked');
       const thisCard = action.payload.thisCard;
-      let firstCard = action.payload.firstCard;
+      const firstCard = action.payload.firstCard;
       const setFirstCard = action.payload.setFirstCard;
       console.log(thisCard.dataset.idx);
       const thisCardIdx = parseInt(thisCard.dataset.idx);
